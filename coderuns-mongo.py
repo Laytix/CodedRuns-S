@@ -27,7 +27,7 @@ state_collection.create_index("scraper_id", unique=True)
 # Configuration
 MAX_RETRIES = 3
 RETRY_DELAY = 5  # seconds between retries
-REQUEST_DELAY = (2, 6)  # random delay between requests in seconds
+REQUEST_DELAY = (4, 9)  # random delay between requests in seconds
 SCRAPER_ID = "main_scraper"  # Unique identifier for this scraper instance
 
 
