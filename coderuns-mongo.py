@@ -4,10 +4,15 @@ from datetime import datetime, timezone
 from pymongo import MongoClient, errors
 import time
 import json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 session = requests.Session()
 
+
 # MongoDB Atlas configuration
-MONGO_URI = "mongodb+srv://david:layiwola@david-cluster.p2ehm.mongodb.net/?retryWrites=true&w=majority&appName=david-cluster"
+MONGO_URI = os.getenv('URI')
 DB_NAME = "coderuns"
 TESTING_COLLECTION = "users"
 USERS_COLLECTION = "escorts"
