@@ -32,7 +32,7 @@ state_collection.create_index("scraper_id", unique=True)
 # Configuration
 MAX_RETRIES = 3
 RETRY_DELAY = 5  # seconds between retries
-REQUEST_DELAY = (4, 9)  # random delay between requests in seconds
+REQUEST_DELAY = (1, 5)  # random delay between requests in seconds
 SCRAPER_ID = "main_scraper"  # Unique identifier for this scraper instance
 
 
@@ -71,12 +71,15 @@ def save_state(state):
 
 
 def get_current_age(birthdate):
-    birthdate_dt = datetime.fromisoformat(birthdate.replace("Z", "+00:00"))
-    now = datetime.now(timezone.utc)
-    age = now.year - birthdate_dt.year
-    if (now.month, now.day) < (birthdate_dt.month, birthdate_dt.day):
-        age -= 1
-    return age
+    try:
+        birthdate_dt = datetime.fromisoformat(birthdate.replace("Z", "+00:00"))
+        now = datetime.now(timezone.utc)
+        age = now.year - birthdate_dt.year
+        if (now.month, now.day) < (birthdate_dt.month, birthdate_dt.day):
+            age -= 1
+        return age
+    except:
+        return None
 
 
 def get_services(userid):
